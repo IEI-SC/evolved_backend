@@ -1,0 +1,67 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="min-content-height">
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Our Events</h2>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            Filter by Type
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="?">All Events</a></li>
+            <li><hr class="dropdown-divider"></li>
+            {% for value, label in event_types %}
+            <li><a class="dropdown-item" href="?type={{ value }}">{{ label }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<div class="row g-4">
+    {% for event in page_obj %}
+    <div class="col-md-6 col-lg-4">
+        <!-- Event card content similar to homepage -->
+        <div class="card h-100">
+            <img src="{{ event.thumbnail.url }}" class="card-img-top" alt="{{ event.title }}">
+            <div class="card-body">
+                <span class="badge bg-info">{{ event.get_event_type_display }}</span>
+                <h5 class="card-title mt-2">{{ event.title }}</h5>
+                <p class="card-text text-muted">
+                    <i class="bi bi-calendar-event"></i> {{ event.date|date:"M d, Y" }}
+                </p>
+                <a href="{% url 'event_detail' event.id %}" class="btn btn-sm btn-outline-primary">
+                    Details
+                </a>
+            </div>
+        </div>  
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Pagination -->
+<nav class="mt-5">
+    <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        </li>
+        {% endif %}
+        
+        {% for num in page_obj.paginator.page_range %}
+        <li class="page-item {% if num == page_obj.number %}active{% endif %}">
+            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+        </li>
+        {% endfor %}
+        
+        {% if page_obj.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+</div>
+{% endblock %}

@@ -1,0 +1,404 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="min-content-height">
+    <div class="container py-5">
+        <h1 class="text-center mb-5 animate__animated animate__fadeIn">Our Team</h1>
+
+        <ul class="nav nav-tabs mb-4" id="teamTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="faculty-tab" data-bs-toggle="tab" 
+                        data-bs-target="#faculty" type="button" role="tab">
+                    Faculty Coordinators
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="students-tab" data-bs-toggle="tab" 
+                        data-bs-target="#students" type="button" role="tab">
+                    Student Members
+                </button>
+            </li>
+        </ul>
+        
+        <div class="tab-content" id="teamTabsContent">
+            <!-- Faculty Tab -->
+            <div class="tab-pane fade show active" id="faculty" role="tabpanel">
+                <div class="mb-5">
+                    <h2 class="text-center mb-4">Faculty Coordinators</h2>
+                    <div class="row g-4 justify-content-center">
+                        {% for member in faculty %}
+                        <div class="col-md-6 col-lg-4 col-xl-3">
+                            <div class="card h-100 border-0 bg-light shadow-sm">
+                                <div class="position-relative" style="height: 280px;">
+                                    <img src="{{ member.image.url }}" 
+                                        class="img-fluid w-100 h-100 object-fit-cover"
+                                        style="object-position: top;"
+                                        alt="{{ member.name }}">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="mb-1">{{ member.name }}</h5>
+                                    <p class="text-muted small mb-1">{{ member.designation }}</p>
+                                    <p class="text-muted small mb-1">{{ member.department }}</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-2">
+                                        <small class="text-muted">{{ member.year_range }}</small>
+                                        {% if member.linkedin %}
+                                        <a href="{{ member.linkedin }}" class="text-primary">
+                                            <i class="bi bi-linkedin"></i>
+                                        </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Student Members Tab -->
+            <div class="tab-pane fade" id="students" role="tabpanel">
+                <div>
+                    <h2 class="text-center mb-4 animate__animated animate__fadeIn">Student Members</h2>
+                    
+                    <ul class="nav nav-pills justify-content-center mb-4" id="studentTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="convenors-tab" data-bs-toggle="pill" 
+                                    data-bs-target="#convenors" type="button">
+                                Convenors
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="committee-tab" data-bs-toggle="pill" 
+                                    data-bs-target="#committee" type="button">
+                                Committee
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="members-tab" data-bs-toggle="pill" 
+                                    data-bs-target="#members" type="button">
+                                Members
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="tech-tab" data-bs-toggle="pill" 
+                                    data-bs-target="#tech" type="button">
+                                Tech Team
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="graphics-tab" data-bs-toggle="pill" 
+                                    data-bs-target="#graphics" type="button">
+                                Graphics Team
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pr-tab" data-bs-toggle="pill" 
+                                    data-bs-target="#pr" type="button">
+                                PR Team
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="manage-tab" data-bs-toggle="pill" 
+                                    data-bs-target="#manage" type="button">
+                                Management Team
+                            </button>
+                        </li>
+                    </ul>
+            
+                    <div class="tab-content">
+                        <!-- Convenors -->
+                        <div class="tab-pane fade show active" id="convenors" role="tabpanel">
+                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                                {% for member in students.convenors %}
+                                <div class="col">
+                                    <div class="card h-100 border-0 shadow-sm animate__animated animate__zoomIn">
+                                        <div class="ratio ratio-1x1" style="width: 70%; margin: 0 auto;">
+                                            <img src="{{ member.image.url }}" 
+                                                class="card-img-top object-fit-cover rounded-circle mt-3" 
+                                                alt="{{ member.name }}"
+                                                style="border: 3px solid #0d6efd;">
+                                        </div>
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">{{ member.name }}</h5>
+                                            <p class="text-muted mb-1">{{ member.designation }}</p>
+                                            <small class="text-muted d-block mb-2">{{ member.year_range }}</small>
+                                            {% if member.linkedin %}
+                                            <a href="{{ member.linkedin }}" class="text-decoration-none" 
+                                               data-bs-toggle="tooltip" title="LinkedIn Profile">
+                                                <i class="bi bi-linkedin fs-4 text-primary"></i>
+                                            </a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+            
+                        <!-- Committee -->
+                        <div class="tab-pane fade" id="committee" role="tabpanel">
+                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                                
+                                {% for member in students.committee %}
+                                <div class="col">
+                                    <div class="card h-100 border-0 shadow-sm animate__animated animate__zoomIn">
+                                        <div class="ratio ratio-1x1" style="width: 70%; margin: 0 auto;">
+                                            <img src="{{ member.image.url }}" 
+                                                class="card-img-top object-fit-cover rounded-circle mt-3" 
+                                                alt="{{ member.name }}"
+                                                style="border: 3px solid #0d6efd;">
+                                        </div>
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">{{ member.name }}</h5>
+                                            <p class="text-muted mb-1">{{ member.designation }}</p>
+                                            <small class="text-muted d-block mb-2">{{ member.year_range }}</small>
+                                            {% if member.linkedin %}
+                                            <a href="{{ member.linkedin }}" class="text-decoration-none" 
+                                               data-bs-toggle="tooltip" title="LinkedIn Profile">
+                                                <i class="bi bi-linkedin fs-4 text-primary"></i>
+                                            </a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+            
+                        <!-- Members -->
+                        <div class="tab-pane fade" id="members" role="tabpanel">
+                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                                {% for member in students.convenors %}
+                                <div class="col">
+                                    <div class="card h-100 border-0 shadow-sm animate__animated animate__zoomIn">
+                                        <div class="ratio ratio-1x1" style="width: 70%; margin: 0 auto;">
+                                            <img src="{{ member.image.url }}" 
+                                                class="card-img-top object-fit-cover rounded-circle mt-3" 
+                                                alt="{{ member.name }}"
+                                                style="border: 3px solid #0d6efd;">
+                                        </div>
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">{{ member.name }}</h5>
+                                            <p class="text-muted mb-1">{{ member.designation }}</p>
+                                            <small class="text-muted d-block mb-2">{{ member.year_range }}</small>
+                                            {% if member.linkedin %}
+                                            <a href="{{ member.linkedin }}" class="text-decoration-none" 
+                                               data-bs-toggle="tooltip" title="LinkedIn Profile">
+                                                <i class="bi bi-linkedin fs-4 text-primary"></i>
+                                            </a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                {% for member in students.committee %}
+                                <div class="col">
+                                    <div class="card h-100 border-0 shadow-sm animate__animated animate__zoomIn">
+                                        <div class="ratio ratio-1x1" style="width: 70%; margin: 0 auto;">
+                                            <img src="{{ member.image.url }}" 
+                                                class="card-img-top object-fit-cover rounded-circle mt-3" 
+                                                alt="{{ member.name }}"
+                                                style="border: 3px solid #0d6efd;">
+                                        </div>
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">{{ member.name }}</h5>
+                                            <p class="text-muted mb-1">{{ member.designation }}</p>
+                                            <small class="text-muted d-block mb-2">{{ member.year_range }}</small>
+                                            {% if member.linkedin %}
+                                            <a href="{{ member.linkedin }}" class="text-decoration-none" 
+                                               data-bs-toggle="tooltip" title="LinkedIn Profile">
+                                                <i class="bi bi-linkedin fs-4 text-primary"></i>
+                                            </a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                {% for member in students.members %}
+                                <div class="col">
+                                    <div class="card h-100 border-0 shadow-sm animate__animated animate__zoomIn">
+                                        <div class="ratio ratio-1x1" style="width: 70%; margin: 0 auto;">
+                                            <img src="{{ member.image.url }}" 
+                                                class="card-img-top object-fit-cover rounded-circle mt-3" 
+                                                alt="{{ member.name }}"
+                                                style="border: 3px solid #0d6efd;">
+                                        </div>
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">{{ member.name }}</h5>
+                                            <p class="text-muted mb-1">{{ member.designation }}</p>
+                                            <small class="text-muted d-block mb-2">{{ member.year_range }}</small>
+                                            {% if member.linkedin %}
+                                            <a href="{{ member.linkedin }}" class="text-decoration-none" 
+                                               data-bs-toggle="tooltip" title="LinkedIn Profile">
+                                                <i class="bi bi-linkedin fs-4 text-primary"></i>
+                                            </a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <!-- Tech team -->
+                        <div class="tab-pane fade show active" id="tech" role="tabpanel">
+                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                                {% for member in students.tech %}
+                                <div class="col">
+                                    <div class="card h-100 border-0 shadow-sm animate__animated animate__zoomIn">
+                                        <div class="ratio ratio-1x1" style="width: 70%; margin: 0 auto;">
+                                            <img src="{{ member.image.url }}" 
+                                                class="card-img-top object-fit-cover rounded-circle mt-3" 
+                                                alt="{{ member.name }}"
+                                                style="border: 3px solid #0d6efd;">
+                                        </div>
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">{{ member.name }}</h5>
+                                            <p class="text-muted mb-1">{{ member.designation }}</p>
+                                            <small class="text-muted d-block mb-2">{{ member.year_range }}</small>
+                                            {% if member.linkedin %}
+                                            <a href="{{ member.linkedin }}" class="text-decoration-none" 
+                                               data-bs-toggle="tooltip" title="LinkedIn Profile">
+                                                <i class="bi bi-linkedin fs-4 text-primary"></i>
+                                            </a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <!-- Graphics team -->
+                        <div class="tab-pane fade show active" id="graphics" role="tabpanel">
+                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                                {% for member in students.graphics %}
+                                <div class="col">
+                                    <div class="card h-100 border-0 shadow-sm animate__animated animate__zoomIn">
+                                        <div class="ratio ratio-1x1" style="width: 70%; margin: 0 auto;">
+                                            <img src="{{ member.image.url }}" 
+                                                class="card-img-top object-fit-cover rounded-circle mt-3" 
+                                                alt="{{ member.name }}"
+                                                style="border: 3px solid #0d6efd;">
+                                        </div>
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">{{ member.name }}</h5>
+                                            <p class="text-muted mb-1">{{ member.designation }}</p>
+                                            <small class="text-muted d-block mb-2">{{ member.year_range }}</small>
+                                            {% if member.linkedin %}
+                                            <a href="{{ member.linkedin }}" class="text-decoration-none" 
+                                               data-bs-toggle="tooltip" title="LinkedIn Profile">
+                                                <i class="bi bi-linkedin fs-4 text-primary"></i>
+                                            </a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <!-- PR team -->
+                        <div class="tab-pane fade show active" id="pr" role="tabpanel">
+                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                                {% for member in students.pr %}
+                                <div class="col">
+                                    <div class="card h-100 border-0 shadow-sm animate__animated animate__zoomIn">
+                                        <div class="ratio ratio-1x1" style="width: 70%; margin: 0 auto;">
+                                            <img src="{{ member.image.url }}" 
+                                                class="card-img-top object-fit-cover rounded-circle mt-3" 
+                                                alt="{{ member.name }}"
+                                                style="border: 3px solid #0d6efd;">
+                                        </div>
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">{{ member.name }}</h5>
+                                            <p class="text-muted mb-1">{{ member.designation }}</p>
+                                            <small class="text-muted d-block mb-2">{{ member.year_range }}</small>
+                                            {% if member.linkedin %}
+                                            <a href="{{ member.linkedin }}" class="text-decoration-none" 
+                                               data-bs-toggle="tooltip" title="LinkedIn Profile">
+                                                <i class="bi bi-linkedin fs-4 text-primary"></i>
+                                            </a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <!-- Management team -->
+                        <div class="tab-pane fade show active" id="manage" role="tabpanel">
+                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                                {% for member in students.manage %}
+                                <div class="col">
+                                    <div class="card h-100 border-0 shadow-sm animate__animated animate__zoomIn">
+                                        <div class="ratio ratio-1x1" style="width: 70%; margin: 0 auto;">
+                                            <img src="{{ member.image.url }}" 
+                                                class="card-img-top object-fit-cover rounded-circle mt-3" 
+                                                alt="{{ member.name }}"
+                                                style="border: 3px solid #0d6efd;">
+                                        </div>
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">{{ member.name }}</h5>
+                                            <p class="text-muted mb-1">{{ member.designation }}</p>
+                                            <small class="text-muted d-block mb-2">{{ member.year_range }}</small>
+                                            {% if member.linkedin %}
+                                            <a href="{{ member.linkedin }}" class="text-decoration-none" 
+                                               data-bs-toggle="tooltip" title="LinkedIn Profile">
+                                                <i class="bi bi-linkedin fs-4 text-primary"></i>
+                                            </a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Custom styles */
+    .card {
+        transition: all 0.3s ease;
+    }
+    .card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+    .rounded-circle {
+        transition: all 0.3s ease;
+    }
+    .card:hover .rounded-circle {
+        transform: scale(1.05);
+    }
+    .nav-link.active {
+        font-weight: 600;
+    }
+</style>
+
+<script>
+    // Initialize tooltips
+    document.addEventListener('DOMContentLoaded', function() {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+        
+        // Add animation class when tab is shown
+        document.querySelectorAll('[data-bs-toggle="tab"], [data-bs-toggle="pill"]').forEach(function(tab) {
+            tab.addEventListener('shown.bs.tab', function (event) {
+                var activePane = document.querySelector(event.target.getAttribute('data-bs-target'));
+                var cards = activePane.querySelectorAll('.card');
+                cards.forEach(function(card, index) {
+                    setTimeout(function() {
+                        card.classList.add('animate__zoomIn');
+                    }, index * 100);
+                });
+            });
+        });
+    });
+</script>
+{% endblock %}

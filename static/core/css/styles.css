@@ -1,0 +1,97 @@
+:root {
+    --iei-primary: #0056b3;  /* IEI Blue */
+    --iei-secondary: #ffc107; /* Accent */
+}
+
+.hero-section {
+    background: linear-gradient(rgba(0, 86, 179, 0.8), url('../images/bg.jpg'));
+    background-size: cover;
+    color: white;
+}
+
+.card {
+    transition: transform 0.3s;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.badge {
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Ensure proper footer positioning */
+html, body {
+    height: 100%;
+}
+
+/* Optional: Add some padding to the bottom of content */
+main {
+    padding-bottom: 2rem;
+}
+
+/* styles.css */
+.min-content-height {
+    min-height: calc(100vh - 200px); /* Adjust 200px based on header/footer height */
+}
+
+.empty-space-fix {
+    flex-grow: 1;
+}
+
+/* Team Page Styles */
+#teamTabs .nav-link {
+    font-weight: 600;
+    color: #495057;
+}
+
+#teamTabs .nav-link.active {
+    color: #0d6efd;
+    border-bottom: 3px solid #0d6efd;
+}
+
+#studentCategories {
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.team-member-img {
+    height: 200px;
+    object-fit: cover;
+    object-position: top;
+}
+
+/* Team Page Specific Styles */
+.ratio-1x1 {
+    aspect-ratio: 1/1;
+}
+
+.object-fit-cover {
+    object-fit: cover;
+    object-position: top;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #0d6efd;
+    color: white;
+}
+
+.card {
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .nav-pills {
+        flex-wrap: wrap;
+    }
+    .nav-item {
+        margin-bottom: 0.5rem;
+    }
+}
