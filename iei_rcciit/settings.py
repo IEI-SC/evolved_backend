@@ -72,8 +72,8 @@ MIDDLEWARE = [
 CORS_ALLOW_ALL_ORIGINS = True  # For development only
 # OR for production:
 CORS_ALLOWED_ORIGINS = [
-    "https://rcciitsciei.netlify.app/",
-    "https://rcciitsciei.netlify.app/",
+    "https://ie-i-scrcciit.vercel.app/",
+    "https://ie-i-scrcciit.vercel.app/",
 ]
 
 ROOT_URLCONF = 'iei_rcciit.urls'
