@@ -72,8 +72,8 @@ MIDDLEWARE = [
 CORS_ALLOW_ALL_ORIGINS = True  # For development only
 # OR for production:
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "http://localhost:5173",
+    "https://rcciitsciei.netlify.app/",
+    "https://rcciitsciei.netlify.app/",
 ]
 
 ROOT_URLCONF = 'iei_rcciit.urls'
