@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-2mc(u36379lc6s=u4_+x_fi1!$3n4p1=1!i@o+*te9dj_v^h+=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["ieisc-rcciit.onrender.com"]
 
 
 # Application definition
@@ -72,8 +72,8 @@ MIDDLEWARE = [
 CORS_ALLOW_ALL_ORIGINS = True  # For development only
 # OR for production:
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "http://localhost:5173",
+    "https://ie-i-scrcciit.vercel.app/",
+    "https://ie-i-scrcciit.vercel.app/",
 ]
 
 ROOT_URLCONF = 'iei_rcciit.urls'
